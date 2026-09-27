@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>พิชญาพร เจนจบเขต (ชา) - Portfolio</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Charmonman:wght@400;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#AB82FF',
+                        secondary: '#8968CD',
+                        background: '#FFBBFF',
+                        accent: '#E2B4BD',
+                        text: '#333333',
+                        light: '#FFFFFF'
+                    },
+                    fontFamily: {
+                        thai: ['Charmonman', 'cursive'],
+                        sans: ['Prompt', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 3s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: #FFBBFF; /* background */
+            color: #333333; /* text */
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .font-thai {
+            font-family: 'Charmonman', cursive;
+        }
+
+        /* Glassmorphism effects */
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 8px 32px 0 rgba(171, 130, 255, 0.15); /* primary shadow */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px 0 rgba(137, 104, 205, 0.25); /* secondary shadow */
+        }
+
+        /* Button styles */
+        .btn-primary {
+            background: linear-gradient(135deg, #AB82FF, #8968CD);
+            color: white;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, #8968CD, #AB82FF);
+            z-index: -1;
+            transition: opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .btn-primary:hover::before {
+            opacity: 1;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(137, 104, 205, 0.4);
+        }
+
+        .btn-outline {
+            border: 2px solid #AB82FF;
+            color: #AB82FF;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline:hover {
+            background-color: #AB82FF;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(171, 130, 255, 0.3);
+        }
+
+        /* Nav link hover */
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #AB82FF;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Profile image specific styling */
+        .profile-img-container {
+            position: relative;
+        }
+        
+        .profile-img-container::before {
+            content: '';
+            position: absolute;
+            inset: -10px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #AB82FF, #E2B4BD);
+            z-index: -1;
+            animation: pulse-slow 3s infinite alternate;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FFBBFF; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #AB82FF; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #8968CD; 
+        }
+
+        /* Decorative Background blobs */
+        .blob {
+            position: absolute;
+            filter: blur(60px);
+            z-index: -2;
+            opacity: 0.6;
+            animation: float 6s ease-in-out infinite alternate;
+        }
+        
+        .blob-1 { top: -10%; left: -10%; width: 400px; height: 400px; background: #AB82FF; border-radius: 50%; }
+        .blob-2 { bottom: 10%; right: -10%; width: 500px; height: 500px; background: #E2B4BD; border-radius: 50%; animation-delay: 2s; }
+        .blob-3 { top: 40%; left: 30%; width: 300px; height: 300px; background: rgba(255, 255, 255, 0.8); border-radius: 50%; animation-delay: 1s; }
+    </style>
+</head>
+<body class="antialiased relative min-h-screen">
+
+    <!-- Background Decorative Blobs -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+
+    <!-- Navigation (Minimal Logo + Links + CTA) -->
+    <nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20 glass rounded-full mt-4 px-6">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="text-2xl font-bold font-thai text-primary hover:text-secondary transition-colors">
+                        Cha.<span class="text-accent">Portfolio</span>
+                    </a>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#about" class="nav-link font-medium text-gray-700 hover:text-primary transition-colors">About Me</a>
+                    <a href="#games" class="nav-link font-medium text-gray-700 hover:text-primary transition-colors">My Games</a>
+                    <a href="#contact" class="nav-link font-medium text-gray-700 hover:text-primary transition-colors">Contact</a>
+                    <a href="#games" class="btn-primary px-6 py-2 rounded-full font-medium shadow-md">
+                        Play My Games <i class="fas fa-gamepad ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-700 hover:text-primary focus:outline-none p-2">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden glass mx-4 mt-2 rounded-2xl overflow-hidden shadow-lg absolute w-[calc(100%-2rem)]">
+            <div class="px-4 pt-2 pb-4 space-y-2">
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-white/50 mobile-link">About Me</a>
+                <a href="#games" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-white/50 mobile-link">My Games</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-white/50 mobile-link">Contact</a>
+                <a href="#games" class="block text-center mt-4 btn-primary px-3 py-3 rounded-full text-base font-medium mobile-link">
+                    Play My Games <i class="fas fa-gamepad ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section (Split Hero) -->
+    <section id="about" class="pt-32 pb-20 min-h-screen flex items-center relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left: Text Content -->
+                <div class="lg:col-span-7 order-2 lg:order-1 text-center lg:text-left" id="profile-data">
+                    <div class="inline-block px-4 py-1 rounded-full bg-white/60 text-secondary font-semibold text-sm mb-6 border border-white backdrop-blur-sm shadow-sm">
+                        <i class="fas fa-graduation-cap mr-2"></i>นักเรียนมัธยมศึกษาปีที่ 5 ห้อง 8
+                    </div>
+                    
+                    <h1 class="text-5xl lg:text-7xl font-bold mb-4 text-gray-800 leading-tight">
+                        สวัสดีค่ะ! หนูชื่อ <br/>
+                        <span class="text-primary font-thai text-6xl lg:text-8xl inline-block mt-2">พิชญาพร เจนจบเขต</span>
+                    </h1>
+                    <p class="text-2xl font-medium text-gray-600 mb-6">เรียกสั้นๆ ว่า <span class="text-accent font-bold text-3xl font-thai bg-white px-3 py-1 rounded-lg shadow-sm">"ชา"</span> ก็ได้ค่ะ 😊</p>
+                    
+                    <p class="text-lg text-gray-700 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed bg-white/40 p-4 rounded-xl border border-white/50">
+                        เป็นคนที่ชอบเรียนรู้สิ่งใหม่ๆ และหลงใหลในการสร้างสรรค์เกม สนุกกับการเปลี่ยนไอเดียให้กลายเป็นเกมที่เล่นได้จริงและให้ความรู้ค่ะ
+                    </p>
+                    
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 mb-10">
+                        <div class="flex items-center bg-white/70 px-4 py-3 rounded-xl shadow-sm border border-white">
+                            <span class="text-3xl mr-3">🎯</span>
+                            <div>
+                                <p class="text-sm text-gray-500 font-medium">เป้าหมายในอนาคต</p>
+                                <p class="text-lg font-bold text-secondary font-thai">ได้เรียนมอเกษตร 💚</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Skills (Bento Grid Style Mini) -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-bold text-gray-700 mb-3 flex items-center justify-center lg:justify-start">
+                            <i class="fas fa-star text-yellow-400 mr-2"></i> Skills & Interests
+                        </h3>
+                        <div class="flex flex-wrap gap-3 justify-center lg:justify-start" id="skills-container">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="#games" class="btn-primary px-8 py-3 rounded-full font-semibold text-lg shadow-lg text-center">
+                            ดูผลงานเกมของชา <i class="fas fa-arrow-down ml-2 animate-bounce"></i>
+                        </a>
+                        <a href="#contact" class="btn-outline bg-white/50 px-8 py-3 rounded-full font-semibold text-lg text-center backdrop-blur-sm">
+                            ติดต่อชา <i class="far fa-paper-plane ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Right: Profile Image -->
+                <div class="lg:col-span-5 order-1 lg:order-2 flex justify-center items-center relative">
+                    <!-- Decor elements -->
+                    <div class="absolute -top-10 -right-10 text-6xl opacity-50 animate-float" style="animation-delay: 1s;">🎮</div>
+                    <div class="absolute -bottom-5 -left-5 text-5xl opacity-50 animate-float" style="animation-delay: 0.5s;">👩‍🍳</div>
+                    <div class="absolute top-20 -left-10 text-4xl opacity-50 animate-float" style="animation-delay: 1.5s;">🏊‍♀️</div>
+                    
+                    <div class="profile-img-container w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full p-2 bg-white shadow-2xl relative z-10">
+                        <!-- Use a reliable placeholder or the provided drive link (if public and direct) 
+                             Since drive links often don't render directly in img tags without modification, 
+                             I'll use a stylized placeholder that fits the vibe, but prepare the structure for the real image -->
+                        <div class="w-full h-full rounded-full overflow-hidden border-4 border-white bg-accent relative">
+                            <!-- Replace src with actual direct image link -->
+                            <img src="https://placehold.co/600x600/E2B4BD/FFFFFF?text=Cha+Profile" 
+                                 alt="พิชญาพร (ชา)" 
+                                 class="w-full h-full object-cover"
+                                 id="profile-img"
+                                 onerror="this.src='https://placehold.co/600x600/E2B4BD/FFFFFF?text=Cha'">
+                            <!-- Optional overlay for style -->
+                            <div class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent mix-blend-overlay"></div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Games Section (Featured + Grid) -->
+    <section id="games" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold font-thai text-primary inline-block relative">
+                    ผลงานเกมของชา
+                    <span class="absolute -bottom-4 left-0 w-full h-2 bg-accent rounded-full opacity-70"></span>
+                </h2>
+                <p class="text-gray-600 mt-6 text-lg max-w-2xl mx-auto">
+                    เกมที่ชาตั้งใจสร้างสรรค์ขึ้นมาเพื่อทั้งความสนุกและให้ความรู้ ลองเข้ามาเล่นกันดูนะคะ!
+                </p>
+            </div>
+
+            <!-- Games Container (Populated by JS) -->
+            <div id="games-container" class="space-y-12">
+                <!-- Data will be injected here by JavaScript -->
+            </div>
+
+            <!-- Empty State (Hidden by default) -->
+            <div id="games-empty-state" class="hidden text-center py-20 glass-card rounded-3xl">
+                <i class="fas fa-ghost text-6xl text-gray-300 mb-4 animate-bounce"></i>
+                <h3 class="text-2xl font-bold text-gray-500 mb-2 font-thai">กำลังสร้างสรรค์ผลงานชิ้นใหม่</h3>
+                <p class="text-gray-400">รอติดตามผลงานเกมสนุกๆ ของชาได้ที่นี่เร็วๆ นี้นะคะ</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer id="contact" class="pt-20 pb-10 relative overflow-hidden bg-white/40 backdrop-blur-md border-t border-white/50 mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="glass-card rounded-3xl p-8 md:p-12 mb-12 text-center transform hover:scale-[1.01] transition-transform duration-300">
+                <h2 class="text-3xl md:text-4xl font-bold font-thai text-primary mb-4">มาพูดคุยหรือเล่นเกมด้วยกันนะคะ!</h2>
+                <p class="text-gray-600 mb-8 max-w-xl mx-auto">
+                    หากสนใจผลงานเกม หรืออยากแลกเปลี่ยนไอเดียเรื่องการทำอาหาร ว่ายน้ำ สามารถติดต่อชาได้ตามช่องทางด้านล่างเลยค่ะ
+                </p>
+                
+                <!-- Social Links -->
+                <div class="flex flex-wrap justify-center gap-4" id="social-links-container">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <div class="text-center border-t border-gray-300/50 pt-8 mt-8">
+                <p class="text-gray-500 font-medium font-thai text-lg">
+                    &copy; <span id="current-year"></span> สร้างสรรค์ด้วย 💜 โดย พิชญาพร เจนจบเขต (ชา)
+                </p>
+                <p class="text-sm text-gray-400 mt-2">
+                    Modern Educational Portfolio + Creative Digital Style
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Data Configuration and Scripts -->
+    <script>
+        // --- 1. EDITABLE DATA CONFIGURATION ---
+        // คุณสามารถแก้ไขข้อมูลทั้งหมดได้ที่นี่
+        const portfolioData = {
+            profile: {
+                fullName: "พิชญาพร เจนจบเขต",
+                nickname: "ชา",
+                role: "มัธยมศึกษาปีที่ 5 ห้อง 8",
+                introText: "เป็นคนที่ชอบเรียนรู้สิ่งใหม่ๆ และหลงใหลในการสร้างสรรค์เกม สนุกกับการเปลี่ยนไอเดียให้กลายเป็นเกมที่เล่นได้จริงและให้ความรู้ค่ะ",
+                futureGoal: "ได้เรียนมอเกษตร 💚",
+                // ถ้ามี Direct Link ของ Google Drive (ที่ลงท้ายด้วยการระบุ id แบบโหลดตรง) ให้ใส่ที่นี่ 
+                // หรือใช้รูปภาพอื่นๆ ได้ชั่วคราว
+                profileImage: "https://placehold.co/600x600/E2B4BD/FFFFFF?text=Cha+Profile", 
+                originalDriveLink: "https://drive.google.com/file/d/14VeVxgYrr2z06xi-_Z6gd1-GY50o-DFf/view?usp=sharing"
+            },
+            skills: [
+                { name: "ทำอาหาร", icon: "fas fa-utensils", color: "bg-orange-100 text-orange-600 border-orange-200" },
+                { name: "ว่ายน้ำ", icon: "fas fa-swimmer", color: "bg-blue-100 text-blue-600 border-blue-200" },
+                { name: "Game Design", icon: "fas fa-gamepad", color: "bg-purple-100 text-purple-600 border-purple-200" },
+                { name: "Creative Thinking", icon: "fas fa-lightbulb", color: "bg-yellow-100 text-yellow-600 border-yellow-200" }
+            ],
+            games: [
+                {
+                    id: "game1",
+                    title: "ฟาร์มร้ากกกกกกก",
+                    creator: "ชา",
+                    description: "เกมจำลองการทำฟาร์มแสนสนุก ที่จะทำให้คุณได้เรียนรู้การจัดการและดูแลฟาร์มด้วยความรัก",
+                    category: "Simulation Game",
+                    year: "2024",
+                    // ใช้ Placeholder สวยๆ แทน หากยังไม่มีรูป
+                    coverImage: "https://placehold.co/800x500/AB82FF/FFFFFF?text=Farm+Love+Game",
+                    url: "https://gemini.google.com/share/18d3b5e91a5a?skid=5fcd24d5-79ba-4625-9b51-6ace7d83a196",
+                    buttonText: "Play Game",
+                    featured: true, // กำหนดให้เป็นเกมเด่น (Featured) จะแสดงผลใหญ่กว่า
+                    colorTheme: "from-green-400 to-emerald-500" // สีตกแต่ง Card
+                },
+                {
+                    id: "game2",
+                    title: "มาร์สแต้เชฟ",
+                    creator: "ชา",
+                    description: "เกมทำอาหารสุดท้าทาย สวมบทบาทเป็นเชฟระดับมาสเตอร์ สร้างสรรค์เมนูอาหารแสนอร่อย",
+                    category: "Simulation Game",
+                    year: "2024",
+                    coverImage: "https://placehold.co/800x500/E2B4BD/FFFFFF?text=Master+Chef+Game",
+                    url: "https://gemini.google.com/share/56f014ece383?skid=5570a5ed-7dfc-4b9e-ac16-1e349f15386e",
+                    buttonText: "Play Now",
+                    featured: false,
+                    colorTheme: "from-orange-400 to-red-500"
+                },
+                {
+                    id: "game3",
+                    title: "เกมคณิตคิดอะไร ?",
+                    creator: "ชา",
+                    description: "เกมการศึกษาที่ใช้การจับคู่คำตอบด้วยการใช้มือ สนุกและได้ฝึกทักษะคณิตศาสตร์ไปพร้อมกัน",
+                    category: "Educational Game",
+                    year: "2024",
+                    coverImage: "https://placehold.co/800x500/8968CD/FFFFFF?text=Math+Quiz+Game",
+                    url: "https://gemini.google.com/share/d52131bc8cef?skid=7b1d80e7-cfd5-4b42-80e2-8b46d7971f39",
+                    buttonText: "View Game",
+                    featured: false,
+                    colorTheme: "from-blue-400 to-indigo-500"
+                }
+            ],
+            socialLinks: [
+                { name: "Email", icon: "fas fa-envelope", url: "#", color: "hover:bg-red-500 hover:text-white" },
+                { name: "Facebook", icon: "fab fa-facebook-f", url: "#", color: "hover:bg-blue-600 hover:text-white" },
+                { name: "Instagram", icon: "fab fa-instagram", url: "#", color: "hover:bg-pink-600 hover:text-white" },
+                // หากไม่มีข้อมูล ให้ใส่ url เป็น '#' หรือลบ object ออกได้เลย
+            ]
+        };
+
+        // --- 2. RENDER FUNCTIONS ---
+        
+        // Render Skills
+        function renderSkills() {
+            const container = document.getElementById('skills-container');
+            container.innerHTML = '';
+            
+            portfolioData.skills.forEach(skill => {
+                const skillEl = document.createElement('div');
+                skillEl.className = `flex items-center px-4 py-2 rounded-xl border ${skill.color} bg-white shadow-sm transition-transform hover:scale-105 cursor-default`;
+                skillEl.innerHTML = `
+                    <i class="${skill.icon} mr-2 text-lg"></i>
+                    <span class="font-medium">${skill.name}</span>
+                `;
+                container.appendChild(skillEl);
+            });
+        }
+
+        // Render Games (Featured + Grid Layout)
+        function renderGames() {
+            const container = document.getElementById('games-container');
+            const emptyState = document.getElementById('games-empty-state');
+            
+            if (!portfolioData.games || portfolioData.games.length === 0) {
+                container.classList.add('hidden');
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            container.classList.remove('hidden');
+            emptyState.classList.add('hidden');
+            container.innerHTML = '';
+
+            const featuredGames = portfolioData.games.filter(g => g.featured);
+            const standardGames = portfolioData.games.filter(g => !g.featured);
+
+            // Render Featured Games first
+            featuredGames.forEach(game => {
+                const card = createFeaturedGameCard(game);
+                container.appendChild(card);
+            });
+
+            // Render Standard Games in a grid
+            if (standardGames.length > 0) {
+                const gridContainer = document.createElement('div');
+                gridContainer.className = 'grid grid-cols-1 md:grid-cols-2 gap-8 mt-12';
+                
+                standardGames.forEach(game => {
+                    const card = createStandardGameCard(game);
+                    gridContainer.appendChild(card);
+                });
+                
+                container.appendChild(gridContainer);
+            }
+        }
+
+        // Create Featured Game Card HTML
+        function createFeaturedGameCard(game) {
+            const div = document.createElement('div');
+            div.className = 'glass-card rounded-3xl overflow-hidden group';
+            div.innerHTML = `
+                <div class="flex flex-col lg:flex-row">
+                    <!-- Image Area -->
+                    <div class="lg:w-1/2 relative overflow-hidden bg-gray-100">
+                        <div class="absolute inset-0 bg-gradient-to-tr ${game.colorTheme} mix-blend-overlay opacity-20 group-hover:opacity-10 transition-opacity z-10"></div>
+                        <img src="${game.coverImage}" alt="${game.title}" class="w-full h-full object-cover min-h-[300px] lg:min-h-[400px] transform group-hover:scale-105 transition-transform duration-700">
+                        
+                        <!-- Category Tag -->
+                        <div class="absolute top-4 left-4 z-20 bg-white/90 backdrop-blur-sm px-4 py-1.5 rounded-full text-sm font-semibold text-gray-800 shadow-sm border border-white/50">
+                            ${game.category}
+                        </div>
+                    </div>
+                    
+                    <!-- Content Area -->
+                    <div class="lg:w-1/2 p-8 lg:p-12 flex flex-col justify-center relative">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl ${game.colorTheme} opacity-10 rounded-bl-full -z-10"></div>
+                        
+                        <div class="flex items-center space-x-2 text-sm text-gray-500 mb-3 font-medium">
+                            <span><i class="far fa-calendar-alt mr-1"></i> ${game.year}</span>
+                            <span>•</span>
+                            <span><i class="fas fa-user-edit mr-1"></i> Creator: ${game.creator}</span>
+                        </div>
+                        
+                        <h3 class="text-3xl lg:text-4xl font-bold font-thai text-gray-800 mb-4 group-hover:text-primary transition-colors">${game.title}</h3>
+                        
+                        <p class="text-gray-600 text-lg mb-8 leading-relaxed">
+                            ${game.description}
+                        </p>
+                        
+                        <div class="mt-auto pt-4 border-t border-gray-100">
+                            <a href="${game.url}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center btn-primary px-8 py-3.5 rounded-full font-semibold text-lg shadow-md hover:shadow-lg w-full sm:w-auto">
+                                ${game.buttonText} <i class="fas fa-external-link-alt ml-2 text-sm"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+            return div;
+        }
+
+        // Create Standard Game Card HTML
+        function createStandardGameCard(game) {
+            const div = document.createElement('div');
+            div.className = 'glass-card rounded-3xl overflow-hidden group flex flex-col h-full';
+            div.innerHTML = `
+                <!-- Image Area -->
+                <div class="relative overflow-hidden bg-gray-100 h-64">
+                    <div class="absolute inset-0 bg-gradient-to-tr ${game.colorTheme} mix-blend-overlay opacity-20 group-hover:opacity-10 transition-opacity z-10"></div>
+                    <img src="${game.coverImage}" alt="${game.title}" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+                    
+                    <div class="absolute top-4 left-4 z-20 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-semibold text-gray-800 shadow-sm border border-white/50">
+                        ${game.category}
+                    </div>
+                </div>
+                
+                <!-- Content Area -->
+                <div class="p-8 flex flex-col flex-grow relative bg-white/50">
+                    <div class="flex items-center space-x-2 text-xs text-gray-500 mb-2 font-medium">
+                        <span>${game.year}</span>
+                        <span>•</span>
+                        <span>By ${game.creator}</span>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold font-thai text-gray-800 mb-3 group-hover:text-primary transition-colors">${game.title}</h3>
+                    
+                    <p class="text-gray-600 mb-6 flex-grow">
+                        ${game.description}
+                    </p>
+                    
+                    <a href="${game.url}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center btn-outline bg-white px-6 py-2.5 rounded-full font-medium w-full mt-auto">
+                        ${game.buttonText} <i class="fas fa-play ml-2 text-xs"></i>
+                    </a>
+                </div>
+            `;
+            return div;
+        }
+
+        // Render Social Links
+        function renderSocialLinks() {
+            const container = document.getElementById('social-links-container');
+            container.innerHTML = '';
+            
+            portfolioData.socialLinks.forEach(link => {
+                if(link.url && link.url !== "") {
+                    const a = document.createElement('a');
+                    a.href = link.url;
+                    a.className = `w-12 h-12 flex items-center justify-center rounded-full bg-white text-gray-600 shadow-sm border border-gray-100 text-xl transition-all duration-300 ${link.color} hover:scale-110 hover:shadow-md`;
+                    a.title = link.name;
+                    a.target = link.url === '#' ? '_self' : '_blank';
+                    a.innerHTML = `<i class="${link.icon}"></i>`;
+                    container.appendChild(a);
+                }
+            });
+        }
+
+        // --- 3. INITIALIZATION & INTERACTIONS ---
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // Set current year in footer
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+            
+            // Render dynamic content
+            renderSkills();
+            renderGames();
+            renderSocialLinks();
+
+            // Mobile Menu Toggle
+            const btn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+            
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+            });
+
+            // Close mobile menu when clicking a link
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    menu.classList.add('hidden');
+                });
+            });
+
+            // Navbar background on scroll
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('py-2');
+                    navbar.classList.remove('py-4');
+                } else {
+                    navbar.classList.add('py-4');
+                    navbar.classList.remove('py-2');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
